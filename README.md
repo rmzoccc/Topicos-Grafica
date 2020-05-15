@@ -1,6 +1,6 @@
 # Topicos-Grafica
 
-CURSO: Topicos en Computacion Grfica
+CURSO: Topicos en Computacion Grafica
 Ciencia de la computacion - Unsa 2020
 
 INTEGRANTES: 
