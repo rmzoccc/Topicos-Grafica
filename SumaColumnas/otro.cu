@@ -40,7 +40,7 @@ int main(){
 		cout<<Mh[i]<<" ";
 	}
 
-	//Guardando memoria en el GPU
+	//Guarda memoria en el GPU
 	float *Md,*Nd;
 	cudaMalloc(&Md,size);
 	cudaMalloc(&Nd,size2);
