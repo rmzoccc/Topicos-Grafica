@@ -1,6 +1,7 @@
 # Topicos-Grafica
 
-CURSO: Topicos en Computacion Grafica
+CURSO: Topicos en Computacion Grfica
+Ciencia de la computacion - Unsa 2020
 
 INTEGRANTES: 
 - Jeferson Joel Poma Choque
