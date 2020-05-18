@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 __global__ void SumaColMatrizKernel(int f,int c,float*Md,float*Nd){
@@ -24,6 +25,7 @@ void SumaColMatrizHost(int f,int c,float*Mh){
 
 
 int main(){
+	unsigned t0, t1, t2, t3;
 	int f=10,c=2;
 	cout<<"Filas: "<<f<<endl;
 	cout<<"Columnas: "<<c<<endl;
@@ -52,13 +54,16 @@ int main(){
 	int bloques=f/128+1;
 	dim3 tamGrid(bloques,1);
 	dim3 tamBlock(128,1,1);
-
+	
+	t0 = clock();
 	SumaColMatrizKernel<<<tamGrid, tamBlock>>>(f,c,Md,Nd);
+	t1 = clock();
 	cudaMemcpy(Nh, Nd, size2, cudaMemcpyDeviceToHost);
-
+	
 	//Suma columnas en HOST
+	t2 = clock();
 	SumaColMatrizHost(f,c,Mh);
-
+	t3 = clock();
 
 	cudaFree(Md);    cudaFree(Nd);
 
@@ -66,5 +71,9 @@ int main(){
 	for(int i=0;i<c;i++){
 		cout<<Nh[i]<<" ";
 	}
+	double time = (double(t1 - t0) / CLOCKS_PER_SEC);
+   	cout << "Tiempo de ejecución en paralelo: " << time << endl;
+	double time1 = (double(t3 - t2) / CLOCKS_PER_SEC);
+   	cout << "Tiempo de ejecución en serie: " << time1 << endl;
 
 }
